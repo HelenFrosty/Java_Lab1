@@ -1,0 +1,75 @@
+public class MyCollection<E> implements List {
+    private Object[] items = new Object[1000];
+    private int nextIndex = 0;
+    private int index = 0;
+    private int size = 0;
+ 
+    
+ 
+    @Override
+    public int size() {
+        return size;
+    }
+ 
+    @Override
+    public boolean isEmpty() {
+        return size() == 0;
+    }
+ 
+ 
+    @Override
+    public boolean add(Object o) {
+        boolean flag = false;
+        if (nextIndex < items.length) {
+            items[nextIndex] = o;
+            index = nextIndex;
+            System.out.println("Item add with index: " + nextIndex + "!!!");
+            nextIndex++;
+            size++;
+            flag = true;
+        }
+        return flag;
+    }
+ 
+ 
+ 
+    @Override
+    public Object get(int index) {
+        return items[index];
+    }
+ 
+ 
+    @Override
+    public void add(int i, Object element) {
+        if (i < items.length) {
+            items[i] = element;
+            index = i;
+            System.out.println("Item add with index: " + i + "!!!");
+            size++;
+        }
+ 
+    }
+ 
+    @Override
+    public Object remove(int index) {
+        boolean flag = false;
+        if (items[index] != null) {
+            items[index] = null;
+            nextIndex--;
+            flag = true;
+            System.out.print("Item with index: " + index + " removed!!!");
+            size--;
+        }
+        return flag;
+    }
+ 
+    @Override
+    public boolean removeAll(Collection c) {
+        items = null;
+        System.out.println("All items removed!!!");
+        size = 0;
+        nextIndex = 0;
+        return true;
+    }
+ 
+}
